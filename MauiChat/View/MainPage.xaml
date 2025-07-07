@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Chat;assembly=Syncfusion.Maui.Chat"
+             xmlns:local="clr-namespace:MauiChat"
+             x:Class="MauiChat.MainPage"
+             x:DataType="local:ChatViewModel">
+
+    <ContentPage.BindingContext>
+        <local:ChatViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:AuthorColorConverter x:Key="authorColorConverter"/>
+
+            <Style TargetType="syncfusion:OutgoingMessageAuthorView">
+                <Setter Property="ControlTemplate">
+                    <Setter.Value>
+                        <ControlTemplate x:DataType="syncfusion:TextMessage">
+                            <Label Text="{Binding Author.Name}" TextColor="{TemplateBinding BindingContext, Converter= {StaticResource authorColorConverter},ConverterParameter={x:Reference viewModel}}" BindingContext="{TemplateBinding BindingContext}"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="syncfusion:IncomingMessageAuthorView">
+                <Setter Property="ControlTemplate">
+                    <Setter.Value>
+                        <ControlTemplate x:DataType="syncfusion:TextMessage">
+                            <Label Text="{Binding Author.Name}" TextColor="{TemplateBinding BindingContext, Converter= {StaticResource authorColorConverter},ConverterParameter={x:Reference viewModel}}" BindingContext="{TemplateBinding BindingContext}"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <syncfusion:SfChat x:Name="sfChat"
+                           Messages="{Binding Messages}"
+                           CurrentUser="{Binding CurrentUser}"
+                           ShowOutgoingMessageAuthorName="True"/>
+
+    </ContentPage.Content>
+    
+</ContentPage>
