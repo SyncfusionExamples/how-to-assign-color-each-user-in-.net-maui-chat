@@ -38,7 +38,7 @@
 
     <ContentPage.Content>
 
-        <syncfusion:SfChat x:Name="sfChat" Margin="20"
+        <syncfusion:SfChat x:Name="sfChat"
                            Messages="{Binding Messages}"
                            CurrentUser="{Binding CurrentUser}"
                            ShowOutgoingMessageAuthorName="True"/>

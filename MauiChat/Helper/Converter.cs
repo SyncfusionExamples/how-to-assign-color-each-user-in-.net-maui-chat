@@ -14,24 +14,17 @@ namespace MauiChat
         {
             if (parameter is ChatViewModel chatViewModel && value is IMessage message)
             {
-                if (chatViewModel.AuthorColors.TryGetValue(message.Author, out Color? color))
-                {
-                    return color ?? Colors.White;
-                }
-                else
-                {
-                    return chatViewModel.AddColorForAuthor(message.Author);
-                }
+                return chatViewModel.AuthorColors.TryGetValue(message.Author, out Color? color)
+                    ? color ?? Colors.Black
+                    : chatViewModel.AddColorForAuthor(message.Author);
             }
-            else
-            {
-                return Colors.White;
-            }
+
+            return Colors.Black;
         }
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            return Colors.White;
+            return Colors.Black;
         }
     }
 }
