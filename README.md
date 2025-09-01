@@ -30,7 +30,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     
-Convrter:
+Converter:
 
     public class AuthorColorConverter : IValueConverter
     {
